@@ -14,11 +14,11 @@ services:
     volumes:
       - ./backend/:/opt/app
 
-#  frontend:
-#    image: node:14
-#    working_dir: /app
-#    volumes:
-#      - ./frontend:/app
-#    command: ["yarn", "start"]
-#    ports:
-#      - "3000:3000"
+  frontend:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: ["yarn", "start"]
+    ports:
+      - "3000:3000"
