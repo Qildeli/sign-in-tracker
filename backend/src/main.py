@@ -5,6 +5,8 @@ from strawberry.fastapi import GraphQLRouter
 from src.database import Base, engine
 from src.graphql.mutations import Mutation
 from src.graphql.queries import Query
+from fastapi.middleware.cors import CORSMiddleware
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,3 +16,11 @@ app = FastAPI()
 graphql_app = GraphQLRouter(schema)
 
 app.include_router(graphql_app, prefix="/graphql")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
