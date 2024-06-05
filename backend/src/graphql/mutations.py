@@ -1,7 +1,6 @@
 import strawberry
 from sqlalchemy.orm import Session
 
-from src.auth import get_password_hash, verify_password
 from src.database import get_db
 from src.graphql.types import (
     LoginInput,
@@ -12,6 +11,7 @@ from src.graphql.types import (
 )
 from src.JWT import create_access_token
 from src.models import GlobalSignInCount, User
+from src.utils import get_password_hash, verify_password
 from src.websocket import clients
 
 
