@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker
 
-from src.models import GlobalSignInCount
 from src.settings import SQLALCHEMY_DATABASE_URL
 
 load_dotenv()
@@ -24,6 +23,8 @@ def get_db():
 
 
 def init_db():
+    from src.models import GlobalSignInCount
+
     db: Session = SessionLocal()
     if not db.query(GlobalSignInCount).first():
         global_count = GlobalSignInCount(count=0)
