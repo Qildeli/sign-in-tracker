@@ -11,8 +11,8 @@ from src.graphql.types import (
     UserType,
 )
 from src.JWT import create_access_token
-from src.main import clients
 from src.models import GlobalSignInCount, User
+from src.websocket import clients
 
 
 @strawberry.type

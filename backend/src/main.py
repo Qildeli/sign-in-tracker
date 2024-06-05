@@ -1,12 +1,13 @@
 import strawberry
 from fastapi import FastAPI
-from starlette.websockets import WebSocket, WebSocketDisconnect
+from starlette.websockets import WebSocket
 from strawberry.fastapi import GraphQLRouter
 
 from src.database import Base, engine
 from src.graphql.mutations import Mutation
 from src.graphql.queries import Query
 from src.settings import add_cors_middleware
+from src.websocket import websocket_endpoint
 
 Base.metadata.create_all(bind=engine)
 
@@ -23,16 +24,6 @@ app.include_router(graphql_app, prefix="/graphql")
 add_cors_middleware(app)
 
 
-# WebSocket
-clients = []
-
-
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    clients.append(websocket)
-    try:
-        while True:
-            await websocket.receive_text()
-    except WebSocketDisconnect:
-        clients.remove(websocket)
+async def websocket_route(websocket: WebSocket):
+    await websocket_endpoint(websocket)
