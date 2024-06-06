@@ -23,7 +23,5 @@ app.include_router(graphql_app, prefix="/graphql")
 # CORS middleware
 add_cors_middleware(app)
 
-
-@app.websocket("/ws")
-async def websocket_route(websocket: WebSocket):
-    await websocket_endpoint(websocket)
+# WebSocket route
+app.websocket("/ws")(websocket_endpoint)
