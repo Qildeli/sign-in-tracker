@@ -4,9 +4,8 @@ from typing import Dict, List
 from fastapi import Depends, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
 
-from src.crud import get_user_by_id
 from src.database import get_db
-from src.JWT import decode_token
+from src.utils.auth import decode_token
 from src.models import GlobalSignInCount
 
 
@@ -62,6 +61,8 @@ async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)
             if not user_id:
                 await websocket.close()
                 return
+
+            from src.crud import get_user_by_id
 
             user = get_user_by_id(db, user_id)
             if not user:
