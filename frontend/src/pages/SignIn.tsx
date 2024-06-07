@@ -5,7 +5,7 @@ import {Box, Grid, TextField} from '@mui/material';
 import Link from '@mui/material/Link';
 import {LOGIN_MUTATION} from "../graphql/mutations";
 import {useMutation} from "@apollo/client";
-import {useAuth} from "../provider/authProvider";
+import {useAuth} from "../authProvider";
 import {useNavigate} from "react-router-dom";
 
 function SignIn() {
