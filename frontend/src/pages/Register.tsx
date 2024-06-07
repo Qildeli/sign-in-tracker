@@ -6,10 +6,11 @@ import Link from "@mui/material/Link";
 import {useMutation} from "@apollo/client";
 import {REGISTER_MUTATION} from "../graphql/mutations";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "../provider/authProvider";
 
 
 function Register() {
-    //@ts-ignore
+    // @ts-ignore
     const { setToken } = useAuth();
     const navigate = useNavigate();
     const [formState, setFormState]: any = useState({})
