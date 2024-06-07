@@ -3,7 +3,7 @@ import json
 from sqlalchemy.orm import Session
 
 from src.models import GlobalSignInCount, User
-from src.websocket import manager
+from src.websocket.connection_manager import manager
 
 
 def increment_sign_in_count(db: Session, user: User):
