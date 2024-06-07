@@ -31,6 +31,7 @@ const AuthProvider = ({ children }: { children: React.ReactElement }) => {
     () => ({
       token,
       setToken,
+      logout,
     }),
     [token]
   );
