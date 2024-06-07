@@ -7,7 +7,7 @@ from src.graphql.mutations import Mutation
 from src.graphql.queries import Query
 from src.settings import add_cors_middleware
 from src.utils.context import get_context
-from src.websocket import websocket_endpoint
+from src.websocket.endpoints import websocket_endpoint
 
 Base.metadata.create_all(bind=engine)
 
