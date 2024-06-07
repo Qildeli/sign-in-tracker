@@ -8,6 +8,11 @@ class UserType:
     sign_in_count: int
 
 
+@strawberry.type
+class GlobalSignInCount:
+    count: int
+
+
 @strawberry.input
 class RegisterInput:
     email: str
