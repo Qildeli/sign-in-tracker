@@ -12,6 +12,12 @@ const AuthProvider = ({ children }: { children: React.ReactElement }) => {
     setToken_(newToken);
   };
 
+  // Function to log out the user
+  const logout = () => {
+    setToken_('');
+    localStorage.removeItem('token');
+  };
+
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
