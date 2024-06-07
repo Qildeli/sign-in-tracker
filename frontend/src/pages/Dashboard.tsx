@@ -5,9 +5,9 @@ import { useAuth } from '../authProvider';
 import { DASHBOARD_QUERY } from '../graphql/queries';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import {Alert} from "@mui/lab";
+import { Alert } from "@mui/lab";
 import Dashboard from '../layouts/dashboard';
-import {environment} from "../environment";
+import { environment } from "../environment";
 
 function DashboardPage() {
   // @ts-ignore
@@ -43,8 +43,10 @@ function DashboardPage() {
 
     ws.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      if (message.globalSignInCount !== undefined) {
+      if (message.type === 'update' && message.globalSignInCount !== undefined) {
         setGlobalSignInCount(message.globalSignInCount);
+      } else if (message.type === 'personalUpdate' && message.personalSignInCount !== undefined) {
+        setPersonalSignInCount(message.personalSignInCount);
       } else if (message.message) {
         setAlertMessage(message.message);
       }
@@ -70,26 +72,26 @@ function DashboardPage() {
 
   return (
     <Dashboard title="Welcome to Dashboard!">
-          <Button
-              variant="outlined"
-              onClick={handleLogout}
-              sx={{ position: 'absolute', top: 16, right: 16 }}
-          >
-              Log out
-          </Button>
-          <Typography variant="h6" gutterBottom align="center">
-            You've signed in {personalSignInCount} times!
-          </Typography>
-          <Typography variant="h6" gutterBottom align="center">
-            Everyone has signed in {globalSignInCount} times!
-          </Typography>
-          {alertMessage && (
-            <Box sx={{ mt: 2 }}>
-              <Alert severity="success">{alertMessage}</Alert>
-            </Box>
-          )}
-          <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-          </Box>
+      <Button
+        variant="outlined"
+        onClick={handleLogout}
+        sx={{ position: 'absolute', top: 16, right: 16 }}
+      >
+        Log out
+      </Button>
+      <Typography variant="h6" gutterBottom align="center">
+        You've signed in {personalSignInCount} times!
+      </Typography>
+      <Typography variant="h6" gutterBottom align="center">
+        Everyone has signed in {globalSignInCount} times!
+      </Typography>
+      {alertMessage && (
+        <Box sx={{ mt: 2 }}>
+          <Alert severity="success">{alertMessage}</Alert>
+        </Box>
+      )}
+      <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+      </Box>
     </Dashboard>
   );
 }
