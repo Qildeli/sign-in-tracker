@@ -37,7 +37,7 @@ async def increment_counts_and_broadcast(db: Session, user: User):
 
     if global_count >= 5:
         await manager.broadcast(
-            json.dumps({"message": "Global sign-in count has reached 5!"})
+            json.dumps({"message": f"Global sign-in count has reached {global_count}!"})
         )
 
     return user, global_count
