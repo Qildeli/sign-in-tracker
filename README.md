@@ -4,7 +4,9 @@
 Application handles user a
 
 ## Access the Application
-You can access the application here: `http://18.185.46.107:3000/register` You can test the application using the same logic as for local testing.
+- You can access the application here: http://18.185.46.107:3000/register You can test the application using the same logic as for local testing.
+
+- Backend hosted API: http://18.185.46.107:8000/graphql
 
 ### Environment Setup
 
