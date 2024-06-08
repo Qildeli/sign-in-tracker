@@ -1,3 +1,4 @@
+
 # Full-Stack Web Application with GraphQL and ReactJS
 
 Application handles user authentication, registration, and sign-in counting functionality with real-time updates.
@@ -25,8 +26,8 @@ docker-compose up --build
 #### 1. Register a User:
 
 - Open your browser and register a new user at `http://localhost:3000/register`.
-https://github.com/Qildeli/sign-in-tracker/assets/64167139/2e6f2c2e-c8b0-4cec-832b-b7f93c2a3ec3
 
+    ![Register](https://github.com/Qildeli/sign-in-tracker/assets/64167139/de096862-288d-4fe4-bdfb-63b7cbe52296)
 
 
 #### 2. Get Access Token:
@@ -46,9 +47,14 @@ Use the endpoint POST `http://localhost:8000/graphql` with the user's credential
     }
     ```
 
-Copy the access token from the response.
+- Copy the access token from the response.
+
+<img width="606" alt="Screenshot 2024-06-08 at 17 01 20" src="https://github.com/Qildeli/sign-in-tracker/assets/64167139/fbf37c95-8f18-4181-bfb3-93e26150d7ce">
+
+
     
 #### 3. WebSocket Connection:
+
 
 - In Postman, create a new WebSocket request to `ws://localhost:8000/ws`.
 - Add the access token to the WebSocket message as it is protected and send request.
@@ -59,11 +65,12 @@ Copy the access token from the response.
     }
     ```
 
+    <img width="606" alt="Screenshot 2024-06-08 at 17 00 42" src="https://github.com/Qildeli/sign-in-tracker/assets/64167139/eb88e781-9829-42f3-aef4-dd612348aa63">
+
+
 #### Login Again:
 
-- Try to log in again with the same user in Postman using the same endpoint and credentials.
-- Observe the updates in the browser and in Postman as the personal and sign-in counts are updated live.
+- Try to log in again with the same user in Postman using the same endpoint and credentials or register with a new user.
+- Observe the updates in the browser and in Postman how personal and public sign-in counts are updated live.
 
-
-Video Demonstration
-
+    https://github.com/Qildeli/sign-in-tracker/assets/64167139/50cdb661-4594-421c-b514-504f7044acf9
