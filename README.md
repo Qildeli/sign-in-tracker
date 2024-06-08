@@ -3,6 +3,11 @@
 
 Application handles user authentication, registration, and sign-in counting functionality with real-time updates.
 
+### Environment Setup
+
+For this test project, the `.env` file is included directly in the repository for easy setup. 
+
+**Note:** In a real-world project, sensitive configuration values should not be committed to the repository. Use a pattern file like `.env.pattern` and add the actual `.env` file to `.gitignore`.
 
 ## Setup and Installation (Local)
 
