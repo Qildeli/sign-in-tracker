@@ -1,7 +1,10 @@
 
 # Full-Stack Web Application with GraphQL and ReactJS
 
-Application handles user authentication, registration, and sign-in counting functionality with real-time updates.
+Application handles user a
+
+## Access the Application
+You can access the application here: `http://18.185.46.107:3000/register` You can test the application using the same logic as for local testing.
 
 ### Environment Setup
 
