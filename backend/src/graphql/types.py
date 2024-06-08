@@ -1,6 +1,20 @@
 import strawberry
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
+# Pydantic model for input validation
+class UserInput(BaseModel):
+    email: EmailStr
+    password: str = Field(..., min_length=8, max_length=128)
+
+    @field_validator("password")
+    def validate_password(cls, value):
+        if len(value) < 8 or len(value) > 128:
+            raise ValueError("Password must be between 8 and 128 characters long.")
+        return value
+
+
+# Strawberry GraphQL types
 @strawberry.type
 class UserType:
     id: int

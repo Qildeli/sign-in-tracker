@@ -8,6 +8,7 @@ from src.graphql.types import (
     LoginResponse,
     RegisterInput,
     RegisterResponse,
+    UserInput,
     UserType,
 )
 from src.utils.auth import create_access_token, verify_password
@@ -18,6 +19,9 @@ from src.utils.helpers import increment_counts_and_broadcast
 class Mutation:
     @strawberry.mutation
     async def register(self, input: RegisterInput) -> RegisterResponse:
+        # Validate input
+        UserInput(email=input.email, password=input.password)
+
         db: Session = next(get_db())
         user = create_user(db, input)
 
@@ -32,6 +36,9 @@ class Mutation:
 
     @strawberry.mutation
     async def login(self, input: LoginInput) -> LoginResponse:
+        # Validate input
+        UserInput(email=input.email, password=input.password)
+
         db: Session = next(get_db())
         user = get_user_by_email(db, input.email)
         if not user or not verify_password(input.password, user.password):
