@@ -8,6 +8,9 @@ Application handles user authentication, registration, and sign-in counting func
 
 - Backend hosted API: http://18.185.46.107:8000/graphql
 
+### Important Note: 
+If you encounter any issues, please try clearing your browser cache.
+
 ### Environment Setup
 
 For this test project, the `.env` file is included directly in the repository for easy setup. 
