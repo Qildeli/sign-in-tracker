@@ -37,9 +37,6 @@ docker-compose up --build
 
 - Open your browser and register a new user at `http://localhost:3000/register`.
 
-    ![Register](https://github.com/Qildeli/sign-in-tracker/assets/64167139/de096862-288d-4fe4-bdfb-63b7cbe52296)
-
-
 ### 2. Get Access Token:
 
 - Open Postman and create a new HTTP request to log in with the registered user.
