@@ -27,17 +27,18 @@ async def increment_counts_and_broadcast(db: Session, user: User):
     user = increment_sign_in_count(db, user)
     global_count = increment_global_sign_in_count(db)
 
-    await manager.broadcast(
-        json.dumps({"type": "update", "globalSignInCount": global_count})
-    )
-    await manager.send_personal_update(
-        str(user.id),
-        json.dumps({"type": "personalUpdate", "personalSignInCount": user.sign_in_count}),
+    update_message = json.dumps({"type": "update", "globalSignInCount": global_count})
+    personal_update_message = json.dumps(
+        {"type": "personalUpdate", "personalSignInCount": user.sign_in_count}
     )
 
+    await manager.broadcast(update_message)
+    await manager.send_personal_update(str(user.id), personal_update_message)
+
     if global_count >= 5:
-        await manager.broadcast(
-            json.dumps({"message": f"Global sign-in count has reached {global_count}!"})
+        global_message = json.dumps(
+            {"message": f"Global sign-in count has reached {global_count}!"}
         )
+        await manager.broadcast(global_message)
 
     return user, global_count
