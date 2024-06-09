@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Alert } from '@mui/material';
 import { useAuth } from '../authProvider';
 import { DASHBOARD_QUERY } from '../graphql/queries';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import { Alert } from "@mui/lab";
 import Dashboard from '../layouts/dashboard';
 import { environment } from "../environment";
 
@@ -34,18 +33,24 @@ function DashboardPage() {
   }, [data]);
 
   useEffect(() => {
+    if (!token) return;
+
     const ws = new WebSocket(environment.wsApiUrl);
 
     ws.onopen = () => {
       console.log('WebSocket connection opened');
-      ws.send(JSON.stringify({ type: 'authenticate', token: localStorage.getItem('token') }));
+      ws.send(JSON.stringify({ type: 'authenticate', token }));
     };
 
     ws.onmessage = (event) => {
+      console.log('WebSocket message received:', event.data);
       const message = JSON.parse(event.data);
       if (message.type === 'update' && message.globalSignInCount !== undefined) {
         setGlobalSignInCount(message.globalSignInCount);
       } else if (message.type === 'personalUpdate' && message.personalSignInCount !== undefined) {
+        setPersonalSignInCount(message.personalSignInCount);
+      } else if (message.type === 'initial') {
+        setGlobalSignInCount(message.globalSignInCount);
         setPersonalSignInCount(message.personalSignInCount);
       } else if (message.message) {
         setAlertMessage(message.message);
@@ -63,7 +68,7 @@ function DashboardPage() {
     return () => {
       ws.close();
     };
-  }, []);
+  }, [token]);
 
   const handleLogout = () => {
     logout();
