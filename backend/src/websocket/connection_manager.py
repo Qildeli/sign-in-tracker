@@ -21,9 +21,10 @@ class ConnectionManager:
     def disconnect(self, websocket: WebSocket, user_id: str):
         """Removes a WebSocket connection for a user"""
 
-        self.active_connections[user_id].remove(websocket)
-        if not self.active_connections[user_id]:
-            del self.active_connections[user_id]
+        if user_id in self.active_connections:
+            self.active_connections[user_id].remove(websocket)
+            if not self.active_connections[user_id]:
+                del self.active_connections[user_id]
 
     async def broadcast(self, message: str):
         """Sends a message to all active connections"""
