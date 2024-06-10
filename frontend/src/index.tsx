@@ -40,6 +40,10 @@ const Routes = () => {
       path: "/register",
       element: <Register/>,
     },
+    {
+      path: "*",
+      element: <Navigate to="/register" />,
+    },
   ];
 
   // Routes accessible only to authenticated users
