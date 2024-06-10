@@ -25,6 +25,8 @@ def get_db():
 def init_db():
     from src.models import GlobalSignInCount
 
+    Base.metadata.create_all(bind=engine)
+
     db: Session = SessionLocal()
     if not db.query(GlobalSignInCount).first():
         global_count = GlobalSignInCount(count=0)

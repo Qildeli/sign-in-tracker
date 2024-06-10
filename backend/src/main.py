@@ -2,14 +2,15 @@ import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 
-from src.database import Base, engine
+from src.database import init_db
 from src.graphql.mutations import Mutation
 from src.graphql.queries import Query
 from src.settings import add_cors_middleware
 from src.utils.context import get_context
 from src.websocket.endpoints import websocket_endpoint
 
-Base.metadata.create_all(bind=engine)
+# Initialize database
+init_db()
 
 app = FastAPI()
 
