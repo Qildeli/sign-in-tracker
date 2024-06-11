@@ -37,7 +37,7 @@ class RegisterInput:
 class RegisterResponse:
     user: UserType
     access_token: str
-
+    refresh_token: str
 
 @strawberry.input
 class LoginInput:
@@ -49,3 +49,9 @@ class LoginInput:
 class LoginResponse:
     user: UserType
     access_token: str
+    refresh_token: str
+
+
+@strawberry.input
+class RefreshTokenRequest:
+    refresh_token: str
