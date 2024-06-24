@@ -3,11 +3,6 @@
 
 Application handles user authentication, registration, and sign-in counting functionality with real-time updates.
 
-## Access the Application
-- You can access the application here: http://18.185.46.107:3000/register You can test the application using the same logic as for local testing.
-
-- Backend hosted API: http://18.185.46.107:8000/graphql
-
 ### Important Note: 
 If you encounter any issues, please try clearing your browser cache.
 
